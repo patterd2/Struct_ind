@@ -5,22 +5,22 @@ Na = 300;
 W1 = 0.01;
 W2 = 1;
 u = 1;
-tau = 1; % timescale separation parameter
+tau = 0.35; % timescale separation parameter
 d = 1.5*ones(Na,1); % attention span/decay of belief
 b = 0*ones(Na,1); % exogeneous forcing/influences
 alpha = 0.2*ones(Na,1); % strength of self-reinforcement
-sigma = 0.05; % noise parameter for opinion dynamics
-sigma_ND = 0.05; % noise parameter for network dynamics
+sigma = 0.01; % noise parameter for opinion dynamics, usually < 0.1
+sigma_ND = 0.05; % noise parameter for network dynamics, usually 0.05
 x0 = 2*randn(Na,1);
 eta = 4;
 eta2 = 4;
-gamma = 0.5;
+gamma = 0.5; % most examples use gamma = 0.5, 0.95 also interesting
 % tempDelta = randn(Na,Na);
 % delta0 =  tempDelta.*(ones(Na) - eye(Na));%0.05*(ones(Na,Na) - eye(Na));% - [0,0,0;0,0,0;0,0,0];zeros(Na,Na);
 delta0 = full(adjacency(WattsStrogatz(Na,7,1))); % build a random small-world network for initial step.
 %% Run the model
 % [x,deltas] = opi_dyn(maxt,Na,W1,W2,u,tau,d,b,alpha,x0,delta0,sigma);
-[x,deltas] = opi_dyn_fernando_coupled(maxt,Na,x0,gamma,eta,eta2,sigma,sigma_ND,W1,u,b,alpha,delta0);
+[x,deltas] = opi_dyn_fernando_coupled(maxt,Na,x0,gamma,eta,eta2,sigma,sigma_ND,W1,u,b,alpha,delta0,tau);
 % [x,deltas] = opi_dyn_fernando(maxt,Na,x0,gamma,eta,sigma,sigma_ND,W1,u,b,alpha,delta0);
 % [x,deltas] = leonardmodel(dt,N,N1,N2,theta1,theta2,K1,K2,r,T);
 % [x,deltas] = opi_dyn(maxt,Na,W1,W2,u,tau,d,b,alpha,x0,delta0,sigma)
