@@ -120,7 +120,7 @@ grid on;
 grid minor;
 
 figure_setups;
-temp_plot_std = std(x);
+temp_plot_std = std(diff(diff(x)));
 plot(0:maxt,temp_plot_std);
 hold on;
 plot(0:maxt,movmean(temp_plot_std,40),'-.r');
