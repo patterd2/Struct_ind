@@ -33,6 +33,7 @@ for i = 1:(maxt+1)
     if i == 1
         delta_changes(i) = sum(sum(abs(temp_delta - delta0)));
     else
+        %keyboard;
         delta_changes(i) = sum(sum(abs(temp_delta - temp_delta_old)));
     end
     degree_dist1(:,i) = histcounts(sum(temp_delta),edges1,'Normalization','probability');%h1.Values';

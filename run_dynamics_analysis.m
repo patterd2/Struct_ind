@@ -1,6 +1,6 @@
 tic;
 %% set parameters
-maxt = 500;
+maxt = 1000;
 Na = 300;
 W1 = 0.01;
 W2 = 1;
@@ -14,13 +14,15 @@ sigma_ND = 0.05; % noise parameter for network dynamics
 x0 = 2*randn(Na,1);
 eta = 4;
 eta2 = 4;
-gamma = 0.5;
+gamma = 0.9;
 % tempDelta = randn(Na,Na);
 % delta0 =  tempDelta.*(ones(Na) - eye(Na));%0.05*(ones(Na,Na) - eye(Na));% - [0,0,0;0,0,0;0,0,0];zeros(Na,Na);
 delta0 = full(adjacency(WattsStrogatz(Na,7,1))); % build a random small-world network for initial step.
 %% Run the model
 % [x,deltas] = opi_dyn(maxt,Na,W1,W2,u,tau,d,b,alpha,x0,delta0,sigma);
-[x,deltas] = opi_dyn_fernando_coupled(maxt,Na,x0,gamma,eta,eta2,sigma,sigma_ND,W1,u,b,alpha,delta0);
+%[x,deltas] = opi_dyn_fernando_coupled(maxt,Na,x0,gamma,eta,eta2,sigma,sigma_ND,W1,u,b,alpha,delta0);
+[x,deltas] = opi_dyn_fernando_uncoupled(maxt,Na,x0,gamma,eta,eta2,sigma,sigma_ND,W1,u,b,alpha,delta0);
+
 % [x,deltas] = opi_dyn_fernando(maxt,Na,x0,gamma,eta,sigma,sigma_ND,W1,u,b,alpha,delta0);
 % [x,deltas] = leonardmodel(dt,N,N1,N2,theta1,theta2,K1,K2,r,T);
 % [x,deltas] = opi_dyn(maxt,Na,W1,W2,u,tau,d,b,alpha,x0,delta0,sigma)

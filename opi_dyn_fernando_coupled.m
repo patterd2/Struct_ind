@@ -1,4 +1,4 @@
-function [x,deltas] = opi_dyn_fernando(maxt,Na,x0,gamma,eta,eta2,sigma,sigma_ND,W1,u,b,alpha,delta0)
+function [x,deltas] = opi_dyn_fernando_coupled(maxt,Na,x0,gamma,eta,eta2,sigma,sigma_ND,W1,u,b,alpha,delta0)
 
 deltas=cell([1,maxt+1]);
 x=zeros(Na,maxt+1);
